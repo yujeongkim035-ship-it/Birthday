@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎉</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+    text-align:center;
+    color:white;
+    width:90%;
+    max-width:700px;
+}
+
+h1{
+    margin-bottom:20px;
+    text-shadow:0 0 15px white;
+}
+
+/* Gift Box */
+
+.gift{
+    font-size:130px;
+    cursor:pointer;
+    transition:.4s;
+    animation:bounce 2s infinite;
+}
+
+.gift:hover{
+    transform:scale(1.15);
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.clickText{
+    font-size:22px;
+    margin-top:10px;
+}
+
+/* Hidden Surprise */
+
+#surprise{
+    display:none;
+    animation:fadeIn 1s;
+}
+
+.photo{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+    border:6px solid white;
+    box-shadow:0 0 30px white;
+    animation:zoom 1s;
+}
+
+@keyframes zoom{
+from{
+transform:scale(0);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+.message{
+    margin-top:20px;
+    font-size:20px;
+    line-height:1.8;
+}
+
+/* Hearts */
+
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:25px;
+    animation:float 5s linear forwards;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0) scale(0);
+opacity:1;
+}
+100%{
+transform:translateY(-800px) scale(2);
+opacity:0;
+}
+}
+
+/* Confetti */
+
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(720deg);
+opacity:0;
+}
+}
+
+.footer{
+    margin-top:20px;
+    font-size:26px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="giftArea">
+
+<h1>🎁 A Special Gift For You 🎁</h1>
+
+<div class="gift" onclick="openGift()">
+🎁
+</div>
+
+<div class="clickText">
+Click the Gift to Open ❤️
+</div>
+
+</div>
+
+<div id="surprise">
+
+<img src="./image/FB_IMG_1782824531740 copy.jpg" class="photo">
+
+<h1>🎉 Happiest Birthday to you ate! 🎉</h1>
+
+<div class="message">
+
+I wish you all the best in life and I hope you achieve your dreams.
+
+You are a wonderful person bisag grabe kayka ka maldita + OA.
+You are the best ate sa amoa ni MJ bisag awayon ta.
+
+Just know nga always mi naa para sa imoha
+bisan pag gakaulit nakos imohang ka OA.
+
+Loveyaaaaaa!❤️
+
+</div>
+
+<div class="footer">
+🎂 🎈 🎉 ❤️
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const colors=[
+"#ff4d6d",
+"#ffd60a",
+"#06d6a0",
+"#4cc9f0",
+"#7209b7",
+"#f72585"
+];
+
+function openGift(){
+
+document.getElementById("giftArea").style.display="none";
+
+document.getElementById("surprise").style.display="block";
+
+confetti();
+
+hearts();
+
+}
+
+function confetti(){
+
+for(let i=0;i<250;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+c.style.top="-20px";
+
+c.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+c.style.animationDuration=
+2+Math.random()*3+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),5000);
+
+}
+
+}
+
+function hearts(){
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.bottom="-20px";
+
+h.style.fontSize=
+20+Math.random()*30+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),5000);
+
+},250);
+
+}
+
+</script>
+
+</body>
+</html>
